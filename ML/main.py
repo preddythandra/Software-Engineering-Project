@@ -40,8 +40,8 @@ def process_image():
                 f"{model.model.names[class_id]} {confidence:0.2f}"
                 for _,_, confidence, class_id, _ in detections
             ]
-            image = sv.BoxAnnotator(thickness=2, text_thickness=2, text_scale=1).annotate(image, detections, labels)
-            success, encoded_image = cv2.imencode(".jpg", image)
+            image_annotated = sv.BoxAnnotator(thickness=2, text_thickness=2, text_scale=1).annotate(image, detections, labels)
+            success, encoded_image = cv2.imencode(".jpg", image_annotated)
             if not success:
                 return jsonify({"error": "Failed to encode the image"})
 
